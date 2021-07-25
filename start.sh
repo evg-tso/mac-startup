@@ -57,5 +57,5 @@ defaults write com.apple.ActivityMonitor IconType -int 5
 which gsed || (brew install gsed)
 sudo gsed -i '1i auth	   sufficient     pam_tid.so' /etc/pam.d/sudo
 
-# Brew
+# DBeaver
 brew install --cask dbeaver-community
