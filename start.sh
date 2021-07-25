@@ -17,6 +17,7 @@ brew install --cask sublime-text
 # Intall cli commands
 brew install tldr
 brew install htop
+brew install wget
 brew install jq
 brew install tree
 
