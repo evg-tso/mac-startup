@@ -79,3 +79,6 @@ brew install --ignore-dependencies maven
 
 # Docker 
 brew install --cask docker
+
+# WhatsApp
+brew install --cask whatsapp
