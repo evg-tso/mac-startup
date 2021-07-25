@@ -75,7 +75,7 @@ brew install --cask rectangle
 curl -s "https://get.sdkman.io" | bash
 
 # maven
-brew install --ignore-dependencies maven
+brew install maven
 
 # Docker 
 brew install --cask docker
