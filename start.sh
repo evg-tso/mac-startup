@@ -54,6 +54,7 @@ defaults write com.apple.ActivityMonitor IconType -int 5
 # Enable TouchID for terminal SUDO
 # https://dev.to/equiman/how-to-use-macos-s-touch-id-on-terminal-5fhg
 # https://unix.stackexchange.com/questions/99350/how-to-insert-text-before-the-first-line-of-a-file
+which gsed || (brew install gsed)
 sudo gsed -i '1i auth	   sufficient     pam_tid.so' /etc/pam.d/sudo
 
 # Brew
