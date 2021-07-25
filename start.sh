@@ -37,13 +37,13 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 which watch || (brew install watch)
 
 # install LastPass
-brew cask install lastpass
+brew install --cask lastpass
 
 # install vscode
-brew cask install visual-studio-code
+brew install --cask visual-studio-code
 
 # Clipy, https://clipy-app.com/
-brew cask install clipy
+brew install --cask clipy
 
 # Finder: Show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
