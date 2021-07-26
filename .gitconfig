@@ -1,0 +1,47 @@
+[user]
+	name = Yevgeni Tsodikov
+
+[pull]
+	rebase = true
+
+[includeIf "gitdir:~/development/work/"]
+	path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/development/personal/"]
+	path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/development/dorin/"]
+        path = ~/.gitconfig-dorin
+
+[init]
+	defaultBranch = master
+
+[alias]
+	ec = config --global --edit                      # Edit global git Config
+	la = !git config -l | grep alias | cut -c 7-     # List Aliases
+
+	l = log --pretty=format:%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn] --decorate --date=short
+	lg = log --oneline --decorate --all --graph      # Log Graph
+	lt = log --graph --decorate --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
+	b = branch
+	a = add
+	ap = add -p                                      # Add Parts
+	s = status -s
+	st = status -s
+	c = commit --verbose
+
+	up = push -u origin HEAD                         # "get up, get on up"
+	pushit = push -u origin HEAD --force-with-lease  # "push it real good!"
+
+	# Many of these are from: https://haacked.com/archive/2014/07/28/github-flow-aliases/
+	co = checkout
+	cob = checkout -b                                # CheckOut Branch
+	cm = !git add -A && git commit --verbose         # Commit all with Message
+
+	optimize = "!git optimise"
+	optimise = "!git remote prune origin && git bclean && git prune && git deep-repack"
+	deep-repack = !git repack -a -d --depth=250 --window=250
+	bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f" # delete merged branches
+	bdone = "!f() { git checkout ${1-master} && git upd && git bclean ${1-master}; }; f" # "branch done!" go to master, pull, and delete merged branches
+	upd = !git pull --rebase --prune $@ && git submodule update --init --recursive
+
