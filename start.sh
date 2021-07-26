@@ -47,7 +47,7 @@ brew install --cask visual-studio-code
 brew install --cask clipy
 
 # Finder: Show hidden files
-defaults write com.apple.finder AppleShowAllFiles YES
+defaults write com.apple.Finder AppleShowAllFiles true
 
 # Activity Monitor: Visualize CPU usage in the Activity Monitor Dock icon
 defaults write com.apple.ActivityMonitor IconType -int 5
