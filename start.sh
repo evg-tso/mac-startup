@@ -82,3 +82,6 @@ brew install --cask docker
 
 # WhatsApp
 brew install --cask whatsapp
+
+# Postman
+brew install --cask postman
