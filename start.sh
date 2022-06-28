@@ -13,6 +13,8 @@ brew install --cask iterm2
 brew install --cask jetbrains-toolbox
 brew install --cask itsycal
 brew install --cask sublime-text
+brew install --cask visualvm
+brew install --cask adobe-creative-cloud
 
 # Intall cli commands
 brew install tldr
