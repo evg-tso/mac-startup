@@ -10,9 +10,6 @@
 [includeIf "gitdir:~/development/personal/"]
 	path = ~/.gitconfig-personal
 
-[includeIf "gitdir:~/development/dorin/"]
-        path = ~/.gitconfig-dorin
-
 [init]
 	defaultBranch = master
 
