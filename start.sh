@@ -43,9 +43,6 @@ brew install --cask lastpass
 # install vscode
 brew install --cask visual-studio-code
 
-# Clipy, https://clipy-app.com/
-brew install --cask clipy
-
 # Finder: Show hidden files
 defaults write com.apple.Finder AppleShowAllFiles true
 
@@ -71,8 +68,9 @@ brew install autojump
 # Rectangle
 brew install --cask rectangle
 
-# Sdkman - https://sdkman.io/install
-curl -s "https://get.sdkman.io" | bash
+# Jenv
+# https://formulae.brew.sh/formula/jenv
+brew install jenv
 
 # maven
 brew install maven
