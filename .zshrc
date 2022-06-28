@@ -111,10 +111,5 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-alias ssh="/Users/yevgenitsodikov/.af-ssh/update.sh; ssh $@"
-
-alias af-scp="/Users/yevgenitsodikov/.af-ssh/af_scp.sh $@"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/yevgenitsodikov/.sdkman"
-[[ -s "/Users/yevgenitsodikov/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yevgenitsodikov/.sdkman/bin/sdkman-init.sh"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
