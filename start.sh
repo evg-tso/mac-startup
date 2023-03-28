@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Install Rosetta2 emulator for the new ARM silicon 
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license
+
+# Make sure the Command Line Tools are installed
+xcode-select --install
+
 # Install brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -13,15 +19,10 @@ brew install --cask iterm2
 brew install --cask jetbrains-toolbox
 brew install --cask itsycal
 brew install --cask sublime-text
-brew install --cask visualvm
 brew install --cask adobe-creative-cloud
 
 # Intall cli commands
-brew install tldr
-brew install htop
-brew install wget
-brew install jq
-brew install tree
+brew install tldr htop wget jq tree
 
 # Install ZSH
 brew install zsh
@@ -57,8 +58,8 @@ defaults write com.apple.ActivityMonitor IconType -int 5
 which gsed || (brew install gsed)
 sudo gsed -i '1i auth	   sufficient     pam_tid.so' /etc/pam.d/sudo
 
-# DBeaver
-brew install --cask dbeaver-community
+# Redis desktop manager
+brew install --cask another-redis-desktop-manager
 
 # powerlevel10k
 brew install romkatv/powerlevel10k/powerlevel10k
@@ -71,7 +72,6 @@ brew install autojump
 brew install --cask rectangle
 
 # Jenv
-# https://formulae.brew.sh/formula/jenv
 brew install jenv
 
 # maven
