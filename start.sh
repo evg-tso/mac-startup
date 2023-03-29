@@ -73,6 +73,8 @@ brew install --cask rectangle
 
 # Jenv
 brew install jenv
+echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(jenv init -)"' >> ~/.zshrc
 
 # maven
 brew install maven
