@@ -97,6 +97,20 @@ brew install jenv maven go goenv clojure leiningen
 brew install --cask claude-code chatgpt codex
 brew install opencode
 
+# Claude Code config
+mkdir -p ~/.claude
+cat > ~/.claude/settings.json << 'EOF'
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr view*)",
+      "Bash(gh pr diff:*)"
+    ]
+  },
+  "autoUpdatesChannel": "stable"
+}
+EOF
+
 # ============================================================
 # Productivity & utilities
 # ============================================================
