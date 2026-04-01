@@ -1,89 +1,159 @@
 #!/bin/bash
 
-# Install Rosetta2 emulator for the new ARM silicon 
+# ============================================================
+# System prerequisites
+# ============================================================
+
+# Install Rosetta2 emulator for the new ARM silicon
 /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 
 # Make sure the Command Line Tools are installed
 xcode-select --install
 
-# Install brew
+# Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install browser
+# Add required taps
+brew tap hashicorp/tap
+
+# ============================================================
+# Terminals
+# ============================================================
+
+brew install --cask iterm2
+brew install --cask ghostty
+
+# ============================================================
+# Browsers
+# ============================================================
+
 brew install --cask google-chrome
 
-# Install proper terminal
-brew install --cask iterm2
+# ============================================================
+# Editors & IDEs
+# ============================================================
 
-# Install tools
 brew install --cask jetbrains-toolbox
-brew install --cask itsycal
 brew install --cask sublime-text
-brew install --cask adobe-creative-cloud
-
-# Intall cli commands
-brew install tldr htop wget jq tree
-
-# Install ZSH
-brew install zsh
-
-# install latest GIT
-brew install git
-brew install git-lfs
-
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# ZSH autosuggestions, https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-# https://formulae.brew.sh/formula/watch, https://www.geeksforgeeks.org/watch-command-in-linux-with-examples/
-which watch || (brew install watch)
-
-# install LastPass
-brew install --cask lastpass
-
-# install vscode
 brew install --cask visual-studio-code
 
-# Finder: Show hidden files
-defaults write com.apple.Finder AppleShowAllFiles true
+# ============================================================
+# CLI tools
+# ============================================================
 
-# Activity Monitor: Visualize CPU usage in the Activity Monitor Dock icon
-defaults write com.apple.ActivityMonitor IconType -int 5
-
-# Enable TouchID for terminal SUDO
-# https://dev.to/equiman/how-to-use-macos-s-touch-id-on-terminal-5fhg
-# https://unix.stackexchange.com/questions/99350/how-to-insert-text-before-the-first-line-of-a-file
-which gsed || (brew install gsed)
-sudo gsed -i '1i auth	   sufficient     pam_tid.so' /etc/pam.d/sudo
-
-# Redis desktop manager
-brew install --cask another-redis-desktop-manager
-
-# powerlevel10k
-brew install romkatv/powerlevel10k/powerlevel10k
-echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-
-# Autojump
+brew install git
+brew install git-lfs
+brew install gh
+brew install tldr htop wget jq tree
+brew install ripgrep
+brew install watch
+brew install gsed
 brew install autojump
+brew install grpcurl
 
-# Rectangle
-brew install --cask rectangle
+# ============================================================
+# Shell: ZSH + Oh My Zsh + plugins + theme
+# ============================================================
 
-# Jenv
+brew install zsh
+
+# Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# zsh-autosuggestions plugin
+# https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# Powerlevel10k theme (oh-my-zsh native install)
+# https://github.com/romkatv/powerlevel10k#oh-my-zsh
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# ============================================================
+# Cloud & infrastructure CLIs
+# ============================================================
+
+brew install awscli
+brew install kubectl
+brew install k9s
+brew install hashicorp/tap/vault
+brew install --cask session-manager-plugin
+
+# ============================================================
+# Containers (Colima -- Docker Desktop alternative)
+# ============================================================
+
+brew install colima
+brew install docker
+brew install docker-compose
+
+# ============================================================
+# Programming languages & version managers
+# ============================================================
+
+# Java
 brew install jenv
-echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(jenv init -)"' >> ~/.zshrc
-
-# maven
 brew install maven
 
-# Docker 
-brew install --cask docker
+# Go
+brew install go
+brew install goenv
 
-# WhatsApp
+# Clojure
+brew install clojure
+brew install leiningen
+
+# ============================================================
+# AI coding tools
+# ============================================================
+
+brew install --cask claude-code
+brew install --cask chatgpt
+brew install --cask codex
+brew install opencode
+
+# ============================================================
+# Productivity & utilities
+# ============================================================
+
+brew install --cask itsycal
+brew install --cask rectangle
+brew install --cask obsidian
+brew install --cask keycastr
 brew install --cask whatsapp
-
-# Postman
 brew install --cask postman
+brew install --cask another-redis-desktop-manager
+brew install --cask jdk-mission-control
+
+# ============================================================
+# macOS system settings
+# ============================================================
+
+# Dock: auto-hide
+defaults write com.apple.dock autohide -bool true
+
+# Finder: show hidden files
+defaults write com.apple.Finder AppleShowAllFiles true
+
+# Finder: show path bar and status bar
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Finder: show all file extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Trackpad: tap-to-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+# Trackpad: three-finger drag (accessibility)
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+
+# Activity Monitor: visualize CPU usage in the Dock icon
+defaults write com.apple.ActivityMonitor IconType -int 5
+
+# Enable TouchID for terminal sudo
+# https://dev.to/equiman/how-to-use-macos-s-touch-id-on-terminal-5fhg
+sudo gsed -i '1i auth\t   sufficient     pam_tid.so' /etc/pam.d/sudo
+
+# Restart affected services
+killall Dock Finder

@@ -1,0 +1,6 @@
+[user]
+	email = me@company.com
+	name = Your Name
+
+[core]
+	sshCommand = ssh -i ~/.ssh/id_ed25519_github_work -o IdentitiesOnly=yes

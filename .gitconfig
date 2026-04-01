@@ -1,3 +1,9 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
 [user]
 	name = Yevgeni Tsodikov
 
@@ -6,6 +12,9 @@
 
 [includeIf "gitdir:~/development/work/"]
 	path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/development/github-work/"]
+	path = ~/.gitconfig-github-work
 
 [includeIf "gitdir:~/development/personal/"]
 	path = ~/.gitconfig-personal
@@ -38,7 +47,16 @@
 	optimize = "!git optimise"
 	optimise = "!git remote prune origin && git bclean && git prune && git deep-repack"
 	deep-repack = !git repack -a -d --depth=250 --window=250
-	bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f" # delete merged branches
+	bclean = "!f() { git branch --merged ${1-master} | grep -v \" ${1-master}$\" | xargs -r git branch -d; }; f" # delete merged branches
 	bdone = "!f() { git checkout ${1-master} && git upd && git bclean ${1-master}; }; f" # "branch done!" go to master, pull, and delete merged branches
 	upd = !git pull --rebase --prune $@ && git submodule update --init --recursive
 
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[core]
+	autocrlf = input
