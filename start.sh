@@ -75,6 +75,15 @@ brew install --cask session-manager-plugin
 
 brew install colima docker docker-compose
 
+# Register docker-compose plugin
+mkdir -p ~/.docker
+if [ -f ~/.docker/config.json ]; then
+  jq '. + {"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' ~/.docker/config.json > ~/.docker/config.json.tmp \
+    && mv ~/.docker/config.json.tmp ~/.docker/config.json
+else
+  echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
+fi
+
 # ============================================================
 # Programming languages & version managers
 # ============================================================
