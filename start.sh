@@ -89,6 +89,7 @@ fi
 # ============================================================
 
 brew install jenv maven go goenv clojure leiningen
+brew install --cask corretto@21
 
 # ============================================================
 # AI coding tools
