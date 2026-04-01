@@ -23,6 +23,11 @@ brew tap hashicorp/tap
 brew install --cask iterm2
 brew install --cask ghostty
 
+# Ghostty config
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+mkdir -p ~/.config/ghostty
+ln -sf "$SCRIPT_DIR/ghostty/config" ~/.config/ghostty/config
+
 # ============================================================
 # Browsers
 # ============================================================
