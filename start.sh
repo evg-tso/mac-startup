@@ -20,8 +20,7 @@ brew tap hashicorp/tap
 # Terminals
 # ============================================================
 
-brew install --cask iterm2
-brew install --cask ghostty
+brew install --cask iterm2 ghostty
 
 # Ghostty config
 MAC_STARTUP_DIR="${MAC_STARTUP_DIR:-$HOME/development/personal/mac-startup}"
@@ -38,23 +37,13 @@ brew install --cask google-chrome
 # Editors & IDEs
 # ============================================================
 
-brew install --cask jetbrains-toolbox
-brew install --cask sublime-text
-brew install --cask visual-studio-code
+brew install --cask jetbrains-toolbox sublime-text visual-studio-code
 
 # ============================================================
 # CLI tools
 # ============================================================
 
-brew install git
-brew install git-lfs
-brew install gh
-brew install tldr htop wget jq tree
-brew install ripgrep
-brew install watch
-brew install gsed
-brew install autojump
-brew install grpcurl
+brew install git git-lfs gh tldr htop wget jq tree ripgrep watch gsed autojump grpcurl
 
 # ============================================================
 # Shell: ZSH + Oh My Zsh + plugins + theme
@@ -77,57 +66,33 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 # Cloud & infrastructure CLIs
 # ============================================================
 
-brew install awscli
-brew install kubectl
-brew install k9s
-brew install hashicorp/tap/vault
+brew install awscli kubectl k9s hashicorp/tap/vault
 brew install --cask session-manager-plugin
 
 # ============================================================
 # Containers (Colima -- Docker Desktop alternative)
 # ============================================================
 
-brew install colima
-brew install docker
-brew install docker-compose
+brew install colima docker docker-compose
 
 # ============================================================
 # Programming languages & version managers
 # ============================================================
 
-# Java
-brew install jenv
-brew install maven
-
-# Go
-brew install go
-brew install goenv
-
-# Clojure
-brew install clojure
-brew install leiningen
+brew install jenv maven go goenv clojure leiningen
 
 # ============================================================
 # AI coding tools
 # ============================================================
 
-brew install --cask claude-code
-brew install --cask chatgpt
-brew install --cask codex
+brew install --cask claude-code chatgpt codex
 brew install opencode
 
 # ============================================================
 # Productivity & utilities
 # ============================================================
 
-brew install --cask itsycal
-brew install --cask rectangle
-brew install --cask obsidian
-brew install --cask keycastr
-brew install --cask whatsapp
-brew install --cask postman
-brew install --cask another-redis-desktop-manager
-brew install --cask jdk-mission-control
+brew install --cask itsycal rectangle obsidian keycastr maccy whatsapp postman another-redis-desktop-manager jdk-mission-control
 
 # ============================================================
 # macOS system settings
@@ -156,9 +121,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeF
 # Activity Monitor: visualize CPU usage in the Dock icon
 defaults write com.apple.ActivityMonitor IconType -int 5
 
-# Enable TouchID for terminal sudo
-# https://dev.to/equiman/how-to-use-macos-s-touch-id-on-terminal-5fhg
-sudo gsed -i '1i auth\t   sufficient     pam_tid.so' /etc/pam.d/sudo
+# Enable TouchID for terminal sudo (survives macOS updates)
+sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
+sudo sed -i '' 's/^#auth/auth/' /etc/pam.d/sudo_local
 
 # Restart affected services
 killall Dock Finder
