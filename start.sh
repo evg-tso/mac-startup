@@ -23,10 +23,10 @@ brew tap hashicorp/tap
 brew install --cask iterm2
 brew install --cask ghostty
 
-# Ghostty config
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+# Ghostty config -- clone the repo first if running interactively
+MAC_STARTUP_DIR="${MAC_STARTUP_DIR:-$HOME/development/personal/mac-startup}"
 mkdir -p ~/.config/ghostty
-ln -sf "$SCRIPT_DIR/ghostty/config" ~/.config/ghostty/config
+ln -sf "$MAC_STARTUP_DIR/ghostty/config" ~/.config/ghostty/config
 
 # ============================================================
 # Browsers
